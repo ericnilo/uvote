@@ -1,4 +1,4 @@
-CREATE TABLE `school_account` (
+CREATE TABLE `school_accounts` (
 	`id` bigint NOT NULL AUTO_INCREMENT,
 	`password` varchar(255) NOT NULL,
 	`username` varchar(20) NOT NULL,
@@ -7,14 +7,14 @@ CREATE TABLE `school_account` (
 	PRIMARY KEY (`id`)
 );
 
-CREATE TABLE `school` (
+CREATE TABLE `schools` (
 	`id` bigint NOT NULL AUTO_INCREMENT,
 	`acronym` varchar(10) NOT NULL,
 	`name` varchar(255) NOT NULL,
 	PRIMARY KEY (`id`)
 );
 
-CREATE TABLE `department` (
+CREATE TABLE `departments` (
 	`id` bigint NOT NULL AUTO_INCREMENT,
 	`acronymn` varchar(8) NOT NULL,
 	`name` varchar(255) NOT NULL,
@@ -22,7 +22,7 @@ CREATE TABLE `department` (
 	PRIMARY KEY (`id`)
 );
 
-CREATE TABLE `course` (
+CREATE TABLE `courses` (
 	`id` bigint NOT NULL AUTO_INCREMENT,
 	`acronymn` varchar(8) NOT NULL,
 	`name` varchar(255) NOT NULL,
@@ -30,7 +30,7 @@ CREATE TABLE `course` (
 	PRIMARY KEY (`id`)
 );
 
-CREATE TABLE `section` (
+CREATE TABLE `sections` (
 	`id` bigint NOT NULL AUTO_INCREMENT,
 	`name` varchar(255) NOT NULL,
 	`school_id` bigint NOT NULL,
@@ -38,14 +38,14 @@ CREATE TABLE `section` (
 	PRIMARY KEY (`id`)
 );
 
-CREATE TABLE `year_section` (
+CREATE TABLE `year_sections` (
 	`id` bigint NOT NULL AUTO_INCREMENT,
 	`year_id` tinyint NOT NULL,
 	`section_id` bigint NOT NULL,
 	PRIMARY KEY (`id`)
 );
 
-CREATE TABLE `student` (
+CREATE TABLE `students` (
 	`id` bigint NOT NULL AUTO_INCREMENT,
 	`first_name` varchar(255) NOT NULL,
 	`last_name` varchar(255) NOT NULL,
@@ -54,13 +54,13 @@ CREATE TABLE `student` (
 	PRIMARY KEY (`id`)
 );
 
-CREATE TABLE `year` (
+CREATE TABLE `years` (
 	`id` tinyint NOT NULL AUTO_INCREMENT,
 	`year` tinyint(3) NOT NULL,
 	PRIMARY KEY (`id`)
 );
 
-CREATE TABLE `voter` (
+CREATE TABLE `voters` (
 	`id` bigint NOT NULL AUTO_INCREMENT,
 	`password` varchar(255) NOT NULL,
 	`has_voted` bool NOT NULL DEFAULT false,
@@ -68,7 +68,7 @@ CREATE TABLE `voter` (
 	PRIMARY KEY (`id`)
 );
 
-CREATE TABLE `election` (
+CREATE TABLE `elections` (
 	`id` bigint NOT NULL AUTO_INCREMENT,
 	`name` varchar(255) NOT NULL,
 	`date` DATE NOT NULL,
@@ -77,7 +77,7 @@ CREATE TABLE `election` (
 	PRIMARY KEY (`id`)
 );
 
-CREATE TABLE `position` (
+CREATE TABLE `positions` (
 	`id` bigint NOT NULL AUTO_INCREMENT,
 	`name` varchar(255) NOT NULL,
 	`max_slot` tinyint(2) NOT NULL,
@@ -85,14 +85,14 @@ CREATE TABLE `position` (
 	PRIMARY KEY (`id`)
 );
 
-CREATE TABLE `running_position` (
+CREATE TABLE `running_positions` (
 	`id` bigint NOT NULL AUTO_INCREMENT,
 	`position_id` bigint NOT NULL,
 	`year_section_id` bigint NOT NULL,
 	PRIMARY KEY (`id`)
 );
 
-CREATE TABLE `political_party` (
+CREATE TABLE `political_parties` (
 	`id` bigint NOT NULL AUTO_INCREMENT,
 	`acronym` varchar(10) NOT NULL,
 	`name` varchar(255) NOT NULL,
@@ -101,7 +101,7 @@ CREATE TABLE `political_party` (
 	PRIMARY KEY (`id`)
 );
 
-CREATE TABLE `candidate` (
+CREATE TABLE `candidates` (
 	`id` bigint NOT NULL AUTO_INCREMENT,
 	`alias` varchar(255) NOT NULL,
 	`voter_id` bigint NOT NULL,
@@ -111,7 +111,7 @@ CREATE TABLE `candidate` (
 	PRIMARY KEY (`id`)
 );
 
-CREATE TABLE `student_year_section` (
+CREATE TABLE `student_year_sections` (
 	`id` bigint NOT NULL AUTO_INCREMENT,
 	`student_id` bigint NOT NULL,
 	`year_section_id` bigint NOT NULL,
@@ -119,14 +119,14 @@ CREATE TABLE `student_year_section` (
 	PRIMARY KEY (`id`)
 );
 
-CREATE TABLE `vote` (
+CREATE TABLE `votes` (
 	`id` bigint NOT NULL AUTO_INCREMENT,
 	`voter_id` bigint NOT NULL,
 	`candidate_id` bigint NOT NULL,
 	PRIMARY KEY (`id`)
 );
 
-CREATE TABLE `school_year` (
+CREATE TABLE `school_years` (
 	`id` bigint NOT NULL AUTO_INCREMENT,
 	`from` year NOT NULL,
 	`to` year NOT NULL,
@@ -134,7 +134,7 @@ CREATE TABLE `school_year` (
 	PRIMARY KEY (`id`)
 );
 
-CREATE TABLE `account` (
+CREATE TABLE `accounts` (
 	`id` bigint NOT NULL AUTO_INCREMENT,
 	`username` varchar(255) NOT NULL,
 	`password` varchar(255) NOT NULL,
@@ -142,57 +142,57 @@ CREATE TABLE `account` (
 	PRIMARY KEY (`id`)
 );
 
-ALTER TABLE `school_account` ADD CONSTRAINT `school_account_fk0` FOREIGN KEY (`school_id`) REFERENCES `school`(`id`);
+ALTER TABLE `school_accounts` ADD CONSTRAINT `school_account_fk0` FOREIGN KEY (`school_id`) REFERENCES `schools`(`id`);
 
-ALTER TABLE `school_account` ADD CONSTRAINT `school_account_fk1` FOREIGN KEY (`student_id`) REFERENCES `student`(`id`);
+ALTER TABLE `school_accounts` ADD CONSTRAINT `school_account_fk1` FOREIGN KEY (`student_id`) REFERENCES `students`(`id`);
 
-ALTER TABLE `department` ADD CONSTRAINT `department_fk0` FOREIGN KEY (`school_id`) REFERENCES `school`(`id`);
+ALTER TABLE `departments` ADD CONSTRAINT `department_fk0` FOREIGN KEY (`school_id`) REFERENCES `schools`(`id`);
 
-ALTER TABLE `course` ADD CONSTRAINT `course_fk0` FOREIGN KEY (`department_id`) REFERENCES `department`(`id`);
+ALTER TABLE `courses` ADD CONSTRAINT `course_fk0` FOREIGN KEY (`department_id`) REFERENCES `departments`(`id`);
 
-ALTER TABLE `section` ADD CONSTRAINT `section_fk0` FOREIGN KEY (`school_id`) REFERENCES `school`(`id`);
+ALTER TABLE `sections` ADD CONSTRAINT `section_fk0` FOREIGN KEY (`school_id`) REFERENCES `schools`(`id`);
 
-ALTER TABLE `section` ADD CONSTRAINT `section_fk1` FOREIGN KEY (`course_id`) REFERENCES `course`(`id`);
+ALTER TABLE `sections` ADD CONSTRAINT `section_fk1` FOREIGN KEY (`course_id`) REFERENCES `courses`(`id`);
 
-ALTER TABLE `year_section` ADD CONSTRAINT `year_section_fk0` FOREIGN KEY (`year_id`) REFERENCES `year`(`id`);
+ALTER TABLE `year_sections` ADD CONSTRAINT `year_section_fk0` FOREIGN KEY (`year_id`) REFERENCES `years`(`id`);
 
-ALTER TABLE `year_section` ADD CONSTRAINT `year_section_fk1` FOREIGN KEY (`section_id`) REFERENCES `section`(`id`);
+ALTER TABLE `year_sections` ADD CONSTRAINT `year_section_fk1` FOREIGN KEY (`section_id`) REFERENCES `sections`(`id`);
 
-ALTER TABLE `student` ADD CONSTRAINT `student_fk0` FOREIGN KEY (`school_id`) REFERENCES `school`(`id`);
+ALTER TABLE `students` ADD CONSTRAINT `student_fk0` FOREIGN KEY (`school_id`) REFERENCES `schools`(`id`);
 
-ALTER TABLE `voter` ADD CONSTRAINT `voter_fk0` FOREIGN KEY (`student_year_section_id`) REFERENCES `student_year_section`(`id`);
+ALTER TABLE `voters` ADD CONSTRAINT `voter_fk0` FOREIGN KEY (`student_year_section_id`) REFERENCES `student_year_sections`(`id`);
 
-ALTER TABLE `election` ADD CONSTRAINT `election_fk0` FOREIGN KEY (`school_id`) REFERENCES `school`(`id`);
+ALTER TABLE `elections` ADD CONSTRAINT `election_fk0` FOREIGN KEY (`school_id`) REFERENCES `schools`(`id`);
 
-ALTER TABLE `election` ADD CONSTRAINT `election_fk1` FOREIGN KEY (`school_year_id`) REFERENCES `school_year`(`id`);
+ALTER TABLE `elections` ADD CONSTRAINT `election_fk1` FOREIGN KEY (`school_year_id`) REFERENCES `school_years`(`id`);
 
-ALTER TABLE `position` ADD CONSTRAINT `position_fk0` FOREIGN KEY (`election_id`) REFERENCES `election`(`id`);
+ALTER TABLE `positions` ADD CONSTRAINT `position_fk0` FOREIGN KEY (`election_id`) REFERENCES `elections`(`id`);
 
-ALTER TABLE `running_position` ADD CONSTRAINT `running_position_fk0` FOREIGN KEY (`position_id`) REFERENCES `position`(`id`);
+ALTER TABLE `running_positions` ADD CONSTRAINT `running_position_fk0` FOREIGN KEY (`position_id`) REFERENCES `positions`(`id`);
 
-ALTER TABLE `running_position` ADD CONSTRAINT `running_position_fk1` FOREIGN KEY (`year_section_id`) REFERENCES `year_section`(`id`);
+ALTER TABLE `running_positions` ADD CONSTRAINT `running_position_fk1` FOREIGN KEY (`year_section_id`) REFERENCES `year_sections`(`id`);
 
-ALTER TABLE `political_party` ADD CONSTRAINT `political_party_fk0` FOREIGN KEY (`election_id`) REFERENCES `election`(`id`);
+ALTER TABLE `political_parties` ADD CONSTRAINT `political_partie_fk0` FOREIGN KEY (`election_id`) REFERENCES `elections`(`id`);
 
-ALTER TABLE `candidate` ADD CONSTRAINT `candidate_fk0` FOREIGN KEY (`voter_id`) REFERENCES `voter`(`id`);
+ALTER TABLE `candidates` ADD CONSTRAINT `candidate_fk0` FOREIGN KEY (`voter_id`) REFERENCES `voters`(`id`);
 
-ALTER TABLE `candidate` ADD CONSTRAINT `candidate_fk1` FOREIGN KEY (`election_id`) REFERENCES `election`(`id`);
+ALTER TABLE `candidates` ADD CONSTRAINT `candidate_fk1` FOREIGN KEY (`election_id`) REFERENCES `elections`(`id`);
 
-ALTER TABLE `candidate` ADD CONSTRAINT `candidate_fk2` FOREIGN KEY (`political_party_id`) REFERENCES `political_party`(`id`);
+ALTER TABLE `candidates` ADD CONSTRAINT `candidate_fk2` FOREIGN KEY (`political_party_id`) REFERENCES `political_parties`(`id`);
 
-ALTER TABLE `candidate` ADD CONSTRAINT `candidate_fk3` FOREIGN KEY (`running_position_id`) REFERENCES `running_position`(`id`);
+ALTER TABLE `candidates` ADD CONSTRAINT `candidate_fk3` FOREIGN KEY (`running_position_id`) REFERENCES `running_positions`(`id`);
 
-ALTER TABLE `student_year_section` ADD CONSTRAINT `student_year_section_fk0` FOREIGN KEY (`student_id`) REFERENCES `student`(`id`);
+ALTER TABLE `student_year_sections` ADD CONSTRAINT `student_year_section_fk0` FOREIGN KEY (`student_id`) REFERENCES `students`(`id`);
 
-ALTER TABLE `student_year_section` ADD CONSTRAINT `student_year_section_fk1` FOREIGN KEY (`year_section_id`) REFERENCES `year_section`(`id`);
+ALTER TABLE `student_year_sections` ADD CONSTRAINT `student_year_section_fk1` FOREIGN KEY (`year_section_id`) REFERENCES `year_sections`(`id`);
 
-ALTER TABLE `student_year_section` ADD CONSTRAINT `student_year_section_fk2` FOREIGN KEY (`school_year_id`) REFERENCES `school_year`(`id`);
+ALTER TABLE `student_year_sections` ADD CONSTRAINT `student_year_section_fk2` FOREIGN KEY (`school_year_id`) REFERENCES `school_years`(`id`);
 
-ALTER TABLE `vote` ADD CONSTRAINT `vote_fk0` FOREIGN KEY (`voter_id`) REFERENCES `voter`(`id`);
+ALTER TABLE `votes` ADD CONSTRAINT `vote_fk0` FOREIGN KEY (`voter_id`) REFERENCES `voters`(`id`);
 
-ALTER TABLE `vote` ADD CONSTRAINT `vote_fk1` FOREIGN KEY (`candidate_id`) REFERENCES `candidate`(`id`);
+ALTER TABLE `votes` ADD CONSTRAINT `vote_fk1` FOREIGN KEY (`candidate_id`) REFERENCES `candidates`(`id`);
 
-ALTER TABLE `school_year` ADD CONSTRAINT `school_year_fk0` FOREIGN KEY (`school_id`) REFERENCES `school`(`id`);
+ALTER TABLE `school_years` ADD CONSTRAINT `school_year_fk0` FOREIGN KEY (`school_id`) REFERENCES `schools`(`id`);
 
-ALTER TABLE `account` ADD CONSTRAINT `account_fk0` FOREIGN KEY (`school_id`) REFERENCES `school`(`id`);
+ALTER TABLE `accounts` ADD CONSTRAINT `account_fk0` FOREIGN KEY (`school_id`) REFERENCES `schools`(`id`);
 
