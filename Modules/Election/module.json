@@ -1,0 +1,13 @@
+{
+    "name": "Election",
+    "alias": "election",
+    "description": "",
+    "keywords": [],
+    "order": 0,
+    "providers": [
+        "Modules\\Election\\Providers\\ElectionServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}
