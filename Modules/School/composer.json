@@ -1,0 +1,25 @@
+{
+    "name": "ericnilo/school",
+    "description": "",
+    "authors": [
+        {
+            "name": "Eric Nilo",
+            "email": "eric.nilo93@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Modules\\School\\Providers\\SchoolServiceProvider"
+            ],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\School\\": ""
+        }
+    }
+}
