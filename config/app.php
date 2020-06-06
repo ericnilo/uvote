@@ -15,6 +15,18 @@ return [
 
     'name' => env('APP_NAME', 'uVote API'),
 
+
+    /*
+    |--------------------------------------------------------------------------
+    | Application API Domain
+    |--------------------------------------------------------------------------
+    |
+    | This value is the domain for your api of your application.
+    |
+    */
+
+    'domain_api' => env('APP_DOMAIN_API', 'api.uvote.local'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment
