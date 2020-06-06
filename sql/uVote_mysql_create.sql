@@ -11,7 +11,14 @@ CREATE TABLE `schools` (
 	`id` bigint NOT NULL AUTO_INCREMENT,
 	`acronym` varchar(10) NOT NULL,
 	`name` varchar(255) NOT NULL,
+	`school_type_id` tinyint NOT NULL,
 	PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `school_types` (
+    `id` tinyint NOT NULL AUTO_INCREMENT,
+    `name` varchar(15) NOT NULL ,
+    PRIMARY KEY (`id`)
 );
 
 CREATE TABLE `departments` (
@@ -40,7 +47,7 @@ CREATE TABLE `sections` (
 
 CREATE TABLE `year_sections` (
 	`id` bigint NOT NULL AUTO_INCREMENT,
-	`year_id` tinyint NOT NULL,
+	`year_section` tinyint(3),
 	`section_id` bigint NOT NULL,
 	PRIMARY KEY (`id`)
 );
@@ -51,12 +58,6 @@ CREATE TABLE `students` (
 	`last_name` varchar(255) NOT NULL,
 	`middle_name` varchar(255) NOT NULL,
 	`school_id` bigint NOT NULL,
-	PRIMARY KEY (`id`)
-);
-
-CREATE TABLE `years` (
-	`id` tinyint NOT NULL AUTO_INCREMENT,
-	`year` tinyint(3) NOT NULL,
 	PRIMARY KEY (`id`)
 );
 
@@ -142,6 +143,8 @@ CREATE TABLE `accounts` (
 	PRIMARY KEY (`id`)
 );
 
+ALTER TABLE `schools` ADD CONSTRAINT `school_type_fk0` FOREIGN KEY (`school_type_id`) REFERENCES `school_types`(`id`);
+
 ALTER TABLE `school_accounts` ADD CONSTRAINT `school_account_fk0` FOREIGN KEY (`school_id`) REFERENCES `schools`(`id`);
 
 ALTER TABLE `school_accounts` ADD CONSTRAINT `school_account_fk1` FOREIGN KEY (`student_id`) REFERENCES `students`(`id`);
@@ -153,8 +156,6 @@ ALTER TABLE `courses` ADD CONSTRAINT `course_fk0` FOREIGN KEY (`department_id`) 
 ALTER TABLE `sections` ADD CONSTRAINT `section_fk0` FOREIGN KEY (`school_id`) REFERENCES `schools`(`id`);
 
 ALTER TABLE `sections` ADD CONSTRAINT `section_fk1` FOREIGN KEY (`course_id`) REFERENCES `courses`(`id`);
-
-ALTER TABLE `year_sections` ADD CONSTRAINT `year_section_fk0` FOREIGN KEY (`year_id`) REFERENCES `years`(`id`);
 
 ALTER TABLE `year_sections` ADD CONSTRAINT `year_section_fk1` FOREIGN KEY (`section_id`) REFERENCES `sections`(`id`);
 
