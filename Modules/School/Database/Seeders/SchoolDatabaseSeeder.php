@@ -16,6 +16,6 @@ class SchoolDatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        // $this->call("OthersTableSeeder");
+        $this->call(SchoolTypesTableSeeder::class);
     }
 }
