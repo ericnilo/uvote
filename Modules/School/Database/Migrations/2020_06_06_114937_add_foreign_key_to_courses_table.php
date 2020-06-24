@@ -1,8 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class AddForeignKeyToCoursesTable extends Migration
 {
@@ -18,7 +17,6 @@ class AddForeignKeyToCoursesTable extends Migration
                   ->references('id')
                   ->on('departments')
                   ->onDelete('cascade');
-
         });
     }
 
@@ -32,7 +30,6 @@ class AddForeignKeyToCoursesTable extends Migration
         Schema::table('courses', function (Blueprint $table) {
             $table->dropForeign('courses_department_id_foreign');
             $table->dropIndex('courses_department_id_foreign');
-
         });
     }
 }

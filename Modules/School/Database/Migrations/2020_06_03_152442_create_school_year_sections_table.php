@@ -1,10 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
-class CreateStudentYearSectionsTable extends Migration
+class CreateSchoolYearSectionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +12,8 @@ class CreateStudentYearSectionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('student_year_sections', function (Blueprint $table) {
+        Schema::create('school_year_sections', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('student_id');
             $table->unsignedBigInteger('year_section_id');
             $table->unsignedBigInteger('school_year_id');
             $table->timestamps();
@@ -29,6 +27,6 @@ class CreateStudentYearSectionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('student_year_sections');
+        Schema::dropIfExists('school_year_sections');
     }
 }

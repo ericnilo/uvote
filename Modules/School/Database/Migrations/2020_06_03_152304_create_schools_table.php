@@ -1,8 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class CreateSchoolsTable extends Migration
 {
@@ -18,6 +17,7 @@ class CreateSchoolsTable extends Migration
             $table->string('acronym', 10);
             $table->string('name');
             $table->unsignedTinyInteger('school_type_id');
+            $table->unsignedBigInteger('account_id');
             $table->timestamps();
         });
     }

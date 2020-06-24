@@ -2,8 +2,8 @@
 
 namespace Modules\School\Database\Seeders;
 
-use Illuminate\Database\Seeder;
 use Carbon\Carbon;
+use Illuminate\Database\Seeder;
 
 class SchoolTypesTableSeeder extends Seeder
 {

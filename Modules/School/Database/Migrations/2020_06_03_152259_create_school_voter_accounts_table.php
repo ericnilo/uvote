@@ -1,10 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
-class CreateSchoolAccountsTable extends Migration
+class CreateSchoolVoterAccountsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +12,12 @@ class CreateSchoolAccountsTable extends Migration
      */
     public function up()
     {
-        Schema::create('school_accounts', function (Blueprint $table) {
+        Schema::create('school_voter_accounts', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('password');
             $table->string('username');
             $table->unsignedBigInteger('school_id');
-            $table->unsignedBigInteger('student_id');
+            $table->unsignedBigInteger('voter_id');
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ class CreateSchoolAccountsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('school_accounts');
+        Schema::dropIfExists('school_voter_accounts');
     }
 }

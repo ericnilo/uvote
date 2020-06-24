@@ -95,3 +95,6 @@ This repository is the API for uVote application
 
 ### Reference:
 https://www.digitalocean.com/community/tutorials/how-to-set-up-laravel-nginx-and-mysql-with-docker-compose
+
+## Database Schema
+Database schema can be found [here](https://dbdiagram.io/d/5ed7d0eb39d18f555300305c).

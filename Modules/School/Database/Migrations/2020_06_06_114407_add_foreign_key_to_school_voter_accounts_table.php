@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class AddForeignKeyToDepartmentsTable extends Migration
+class AddForeignKeyToSchoolVoterAccountsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,7 +12,7 @@ class AddForeignKeyToDepartmentsTable extends Migration
      */
     public function up()
     {
-        Schema::table('departments', function (Blueprint $table) {
+        Schema::table('school_voter_accounts', function (Blueprint $table) {
             $table->foreign('school_id')
                   ->references('id')
                   ->on('schools')
@@ -27,9 +27,9 @@ class AddForeignKeyToDepartmentsTable extends Migration
      */
     public function down()
     {
-        Schema::table('departments', function (Blueprint $table) {
-            $table->dropForeign('departments_school_id_foreign');
-            $table->dropIndex('departments_school_id_foreign');
+        Schema::table('school_voter_accounts', function (Blueprint $table) {
+            $table->dropForeign('school_voter_accounts_school_id_foreign');
+            $table->dropIndex('school_voter_accounts_school_id_foreign');
         });
     }
 }
