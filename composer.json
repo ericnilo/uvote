@@ -14,7 +14,8 @@
         "guzzlehttp/guzzle": "^6.3",
         "laravel/framework": "^7.0",
         "laravel/tinker": "^2.0",
-        "nwidart/laravel-modules": "^7.1"
+        "nwidart/laravel-modules": "^7.1",
+        "staudenmeir/belongs-to-through": "^2.5"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.7",
@@ -65,7 +66,7 @@
         "post-update-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
             "@php artisan ide-helper:generate",
-            "@php artisan ide-helper:meta"
+            "@php artisan ide-helper:meta --filename='.phpstorm.meta.php/phpstorm.php'"
         ]
     }
 }

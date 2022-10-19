@@ -2,8 +2,8 @@
 
 namespace Modules\School\Providers;
 
-use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Route;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -61,7 +61,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapApiRoutes()
     {
-        Route::prefix('api')
+        Route::domain(config('domain_api'))
             ->middleware('api')
             ->namespace($this->moduleNamespace)
             ->group(module_path('School', '/Routes/api.php'));
